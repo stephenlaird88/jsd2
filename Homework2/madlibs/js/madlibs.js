@@ -27,8 +27,8 @@ print.addEventListener('click', printFavorites);
 function generateStartup() {
 
 	// TODO: generate two random index numbers, one for each array
-	var randomStartupX = startupX[getRandomInt(0,5)];
-	var randomStartupY = startupY[getRandomInt(0,4)];
+	var randomStartupX = startupX[getRandomInt(0,startupX.length-1)];
+	var randomStartupY = startupY[getRandomInt(0,startupY.length-1)];
 
 	// TODO: concatenate the fixed text with the two random values
 	//       to create a new startup idea like:
