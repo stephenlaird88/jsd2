@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM TREE</title>
+</head>
+<body>
+<h1>DOM TREE</h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<div>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<ul id="menu">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+
+<style>
+	div p {
+		color:blue;
+	}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+
+// Getting elements from DOM
+var div = document.querySelector("div");
+var p = document.querySelector("div p");
+var h1 = document.querySelector("h1");
+
+function updateParagraph (text) {
+	console.log('updateParagraph');
+	p.innerHTML = text;
+}
+
+var $div = $("div");
+var $p = $("div p");
+
+function updateParagraphWithJQuery (text) {
+	console.log('bad updateParagraphWithQuery');
+	$p.html(text);
+}
+
+//Adding elements to DOM
+
+// Structure
+
+var menu = document.querySelector("#menu");
+
+
+// Update Page Functions
+// -----------------------------------------------
+
+// Step 1: Create new elements
+//var li = document.createElement("li");
+
+// Step 2: Add content/attributes to Elements
+//li.innerHTML = "4";
+
+// Step 3: Append new Element to DOM
+//menu.appendChild(li);
+
+function addListItem (text) {
+	console.log('addListItem');
+	var li = document.createElement("li");
+	li.innerHTML = text;
+	menu.appendChild(li);
+}
+
+
+</script>
+
+
+
+</body>
+</html>
