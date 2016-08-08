@@ -4,6 +4,7 @@ var results = document.querySelector(".results");
 var form = document.querySelector("form");
 var zip = document.querySelector("form .zip");
 
+
 // Events// ----------------------------------------------
 
 form.addEventListener('submit', getRestaurants);
@@ -12,52 +13,44 @@ form.addEventListener('submit', getRestaurants);
 // Event Handler 
 // ------------------------------------
 
-
-// Update page
-// ------------------------------------
-
 function getRestaurants(e) {
     e.preventDefault();
-
+// This grabs the value of the input form field
     var search = zip.value;
     console.log(search);
-
+// This is the specific end point url query for our api call
     var url = "http://opentable.herokuapp.com/api/restaurants?zip=" + search;
-
+// This is the jquery ajax request to openTable to grab json data based on our query
     $.getJSON(url, updateRestaurant);
 
 }
 
-
-
 function updateRestaurant(json) {
-    console.log('updateRestaurants',json);
-    // this clears the previous results
+    console.log('updateRestaurant',json);
+    // This clears the previous results of the ul element. 
     results.innerHTML = '';
-
-    // this creates new search results
+    // This creates new search results. It reads, for each restaurant array of objects, execute the createRestaurant function. 
     json.restaurants.forEach(createRestaurant)
 }
 
-function createRestaurant (updateRestaurants){
+function createRestaurant (i){
 
-//step 1: create elements
+// Step 1: create elements
     var li = document.createElement("li");
     var img = document.createElement("img");
     var h2 = document.createElement("h2");
     var p = document.createElement("p");
-
-//step 2: add content / attributes
-// The updateRestaurant in this case is similar to e. It's just a local placeholder. 
-
-    img.src = updateRestaurants.image_url;
-    h2.textContent = updateRestaurants.name;
-    p.textContent = updateRestaurants.address;
+// Step 2: add content / attributes
+/* The i in this case is similar to e. It's just a local placeholder that represents each item in the array. In this case each
+   item in the array is the restaurants object from the json data. */
+    img.src = i.image_url;
+    h2.textContent = i.name;
+    p.textContent = i.address;
 // notes: hardcoded first   
     //img.src = "https://upload.wikimedia.org/wikipedia/commons/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg";
     //h2.textContent = "Thai Express 17";
     //p.textContent = "3654 24th St., SF, cA, 94109";
-    //Step 3: append to parents
+// Step 3: append to parents
     results.appendChild(li);
     li.appendChild(img);
     li.appendChild(h2);
@@ -83,8 +76,6 @@ function createRestaurant (updateRestaurants){
         image: "http://www.raiseatoast.ca/wp-content/uploads/2014/05/burmese-tea-leaf-salad-2.jpg"
     };
 */
-
-var restaurants = [];
-
-restaurants.push(italian, pizza, burmese);
+// var restaurants = [];
+//restaurants.push(italian, pizza, burmese);
 
