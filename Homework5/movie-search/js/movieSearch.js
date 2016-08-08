@@ -28,7 +28,7 @@ function getMovies(e) {
     var search = movieTitle.value;
     console.log(search);
 // This is the specific end point url query for our api call
-    var url = "http://omdbapi.com/?s=" + search;
+    var url = "https://omdbapi.com/?s=" + search;
 // This is the jquery ajax request to openTable to grab json data based on our query
     $.getJSON(url, updateMovie);
  }
@@ -39,7 +39,7 @@ function getMovies(e) {
  		e.preventDefault();
  		var listId = e.target.parentElement.id;
  		console.log(listId);
- 		var url = "http://omdbapi.com/?i=" + listId;
+ 		var url = "https://omdbapi.com/?i=" + listId;
  		$.getJSON(url, updateMovieDetails);
  	} else if(e.target && e.target.nodeName !== "P"){
  		console.log("Too bad sucker there's a bug!");
@@ -78,6 +78,6 @@ function updateMovieDetails(json) {
 	movieDetailsTitle.textContent = json.Title;
 	movieDetailsPlot.textContent = json.Plot;
 	movieDetailsImdbLink.textContent = "View on IMDB";
-	movieDetailsImdbLink.href = "http://www.imdb.com/title/" + json.imdbID;
+	movieDetailsImdbLink.href = "https://www.imdb.com/title/" + json.imdbID;
 }
 
