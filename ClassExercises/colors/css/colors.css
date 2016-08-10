@@ -1,0 +1,24 @@
+body {
+    background:thistle;
+    color:navy;
+    font-size:16px;
+    margin:50px;
+}
+
+li {
+	padding: 10px;
+	margin: 10px;
+}
+
+.bisque {
+    background-color:bisque;
+}
+.darkcyan {
+    background-color:darkcyan;
+}
+.hotpink {
+    background-color:hotpink;
+}
+.palegreen {
+    background-color:palegreen;
+}

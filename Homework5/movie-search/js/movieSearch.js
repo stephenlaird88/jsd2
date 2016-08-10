@@ -1,7 +1,3 @@
-// Setup
-// ----------------------------------------------
-
-
 // Structure
 // ----------------------------------------------
 var results = document.querySelector(".results");
@@ -21,30 +17,36 @@ results.addEventListener('click', getMovieDetails);
 
 // Event handlers
 // ----------------------------------------------
-
 function getMovies(e) {
     e.preventDefault();
-// This grabs the value of the input form field
-    var search = movieTitle.value;
-    console.log(search);
-// This is the specific end point url query for our api call
-    var url = "https://omdbapi.com/?s=" + search;
-// This is the jquery ajax request to openTable to grab json data based on our query
-    $.getJSON(url, updateMovie);
+    if(movieTitle.value == ""){
+        return;
+    } else if(movieTitle.value != ""){
+    // This grabs the value of the input form field
+        var searchInput = movieTitle.value;
+    // This is the specific end point url query for our api call
+        var url = "https://omdbapi.com/?s=" + searchInput;
+    // This is the jquery ajax request to openTable to grab json data based on our query
+        $.getJSON(url, updateMovie);
+    }
  }
 
  function getMovieDetails(e) {
  // Utilizing event delegation to check for any event that bubbles up within the ul results
- 	if(e.target && e.target.nodeName == "P"){
+ 	if(e.target.nodeName != "LI"){
  		e.preventDefault();
- 		var listId = e.target.parentElement.id;
- 		console.log(listId);
- 		var url = "https://omdbapi.com/?i=" + listId;
+    //  console.log(e.target);
+ 		var movieListId = e.target.parentElement.id;
+ 	//	console.log(listId);
+ 		var url = "https://omdbapi.com/?i=" + movieListId;
  		$.getJSON(url, updateMovieDetails);
- 	} else if(e.target && e.target.nodeName !== "P"){
- 		console.log("Too bad sucker there's a bug!");
+ 	} else if(e.target.nodeName == "LI"){
+    //  console.log(e.target.nodeName);
+ 		console.log("Ohh no you didn't!");
  	}
  }
+
+// You could use element.closest instead but it's not supported on all browsers 
 
 // Update page
 // ----------------------------------------------
@@ -63,8 +65,12 @@ function createMovie (i){
     var img = document.createElement("img");
     var p = document.createElement("p");
 // Step 2: add content / attributes
+    if(i.Poster == "N/A"){
+        img.src = "http://static.fogs.com/static/uploads/images/605_undefined/4ff591e1-a10b978fcf.jpg";
+    } else if(i.Poster != "N/A"){
+        img.src = i.Poster;
+    }
 	li.id = i.imdbID;
-    img.src = i.Poster;
     p.textContent = i.Title;
 // Step 3: append to parents
     results.appendChild(li);
@@ -74,10 +80,14 @@ function createMovie (i){
 
 function updateMovieDetails(json) {
 // add content / attributes from api to existing details html
-	movieDetailsImage.src = json.Poster;
+    if(json.Poster == "N/A"){
+        movieDetailsImage.src = "http://static.fogs.com/static/uploads/images/605_undefined/4ff591e1-a10b978fcf.jpg";
+    } else if(json.Poster != "N/A"){
+        movieDetailsImage.src = json.Poster;
+    }
 	movieDetailsTitle.textContent = json.Title;
 	movieDetailsPlot.textContent = json.Plot;
 	movieDetailsImdbLink.textContent = "View on IMDB";
-	movieDetailsImdbLink.href = "https://www.imdb.com/title/" + json.imdbID;
+	movieDetailsImdbLink.href = "https://www.imdb.com/title/" + json.imdbID;   
 }
 
