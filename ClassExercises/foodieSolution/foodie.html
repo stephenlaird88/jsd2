@@ -17,14 +17,24 @@
 	<input class="zip" placeholder="Zip code">
 </form>
 
+<script id="header-template" type="text/x-handlebars-template">
+	<div class="total-count">
+		<p>{{total_entries}} X Results found {{restaurants.0.postal_code}}</p>
+		<p>Page {{current_page}}</p>
+	</div>
+</script>
+
 <ul class="results">
 
 <script id="restaurant-template" type="text/x-handlebars-template">
-	{{#each}}
+	{{#each this}}
 		<li>
 			<img src="{{image_url}}">
 			<h2>{{name}}</h2>
 			<p>{{address}}</p>
+			<p>
+				<a href="{{reserve_url}}">Make Reservation</a>
+			</p>
 		</li>
 	{{/each}}
 </script>
