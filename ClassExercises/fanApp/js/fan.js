@@ -59,7 +59,7 @@ function messageActionClicked(event) {
 
 	function updateVoteCountOrDelete(message) {
 		// use event delegation to determine which icon was clicked
-		if(event.target.className == "fa fa-thumbs-up pull-right" || event.target.className == "fa fa-thumbs-down pull-right") {
+		if(event.target.className === "fa fa-thumbs-up pull-right") {
 			var li = event.target.parentElement;
 			if (li.dataset.id === message.id){
 				// update vote count
@@ -67,20 +67,28 @@ function messageActionClicked(event) {
 			} else {
 				return;
 			}
-		} else if(event.target.className == "fa fa-trash pull-right delete"){
+		} else if(event.target.className === "fa fa-thumbs-down pull-right") {
 			var li = event.target.parentElement;
 			if (li.dataset.id === message.id){
-				// removes li html from DOM
-				li.remove();
-				// update app object to delete from firebase
-			/*	app.messages.forEach(function(item, index){
-   			   		 if (item.id === id) {
-     					 app.messages.splice(index, 1);
-					    }
-					  } */
+				// update vote count
+				message.voteCount = message.voteCount - 1;
 			} else {
 				return;
 			}
+		} else if(event.target.className == "fa fa-trash pull-right delete"){
+			var li = event.target.parentElement;
+		    app.messages.forEach(function(message, index){
+		      if (li.dataset.id === message.id) {
+		      	// removes li html from DOM
+		      	li.remove();
+		      	// update app object to delete from firebase using array splice
+		        app.messages.splice(index, 1);
+		      } else {
+				return;
+			  }
+		    });
+		} else {
+			return;
 		}
 	}
 	// save your voteCount update back to firebase 
