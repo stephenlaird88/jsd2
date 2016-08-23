@@ -1,17 +1,17 @@
 // Structure
-//--------------
+//------------------------------------------------------
 var form 	    	 = document.querySelector("form"),
 	messageName 	 = document.querySelector("#message");
 var messageTemplate  = document.querySelector("#message-template");
 var messageBoardList = document.querySelector(".message-board");
-//var upVote 			 = document.querySelector(".fa.fa-thumbs-up.pull-right");
-//var downVote 		 = document.querySelector(".fa.fa-thumbs-down.pull-right");
-//var trash 			 = document.querySelector(".fa.fa-trash.pull-right.delete");
+
+
+
 
 
 
 // Setup
-//-----------------------------
+//-------------------------------------------------------
 var app = {
 	"messages":[]
 };
@@ -22,8 +22,9 @@ var fbRef = new Firebase("https://fanapp-cbd53.firebaseio.com");
 
 
 
+
 // Events
-//-------------------
+//--------------------------------------------------------
 window.addEventListener("load", getMessageBoardList);
 form.addEventListener("submit", addMessage);
 
@@ -32,11 +33,11 @@ form.addEventListener("submit", addMessage);
 
 
 // Event Handlers
-//------------------------------
+//---------------------------------------------------------
 function addMessage(event) {
 	event.preventDefault();
 
-	// create JSON for new message
+	// create JSON object for new message
 	var message = {
 		id: generateUUID(),
 		content: messageName.value,
@@ -58,7 +59,7 @@ function messageActionClicked(event) {
 
 	function updateVoteCountOrDelete(message) {
 		// use event delegation to determine which icon was clicked
-		if(event.target.className == "fa fa-thumbs-up pull-right" || event.target.classList == "fa fa-thumbs-down pull-right") {
+		if(event.target.className == "fa fa-thumbs-up pull-right" || event.target.className == "fa fa-thumbs-down pull-right") {
 			var li = event.target.parentElement;
 			if (li.dataset.id === message.id){
 				// update vote count
@@ -69,8 +70,14 @@ function messageActionClicked(event) {
 		} else if(event.target.className == "fa fa-trash pull-right delete"){
 			var li = event.target.parentElement;
 			if (li.dataset.id === message.id){
+				// removes li html from DOM
 				li.remove();
-				// To do - Try to remove from your firebase
+				// update app object to delete from firebase
+			/*	app.messages.forEach(function(item, index){
+   			   		 if (item.id === id) {
+     					 app.messages.splice(index, 1);
+					    }
+					  } */
 			} else {
 				return;
 			}
@@ -84,14 +91,15 @@ function messageActionClicked(event) {
 
 
 
+
 // Update page functions
-//--------------------------
+//---------------------------------------------------------------------
 function createMessage(message) {
    
-   	// Using a Template
+   	// Using handlebars template to simplify the creation of dynamic html 
  	var template = Handlebars.compile(messageTemplate.innerHTML);
+ 	// Since handlebars converts html into a string html, we use this to parse into html and insert the message at the end
     messageBoardList.insertAdjacentHTML('beforeend', template(message));
-
     // upVote, downVote event listener inside create message to leverage local message object
     messageBoardList.addEventListener("click", messageActionClicked);
 };
@@ -102,7 +110,7 @@ function createMessage(message) {
 
 
 // Storage Functions
-//--------------------------------
+//-------------------------------------------------------------------
 function dataChanged(snapshot) {
 
     if (snapshot.val() === null) {
@@ -132,8 +140,9 @@ function saveMessage() {
 
 
 // Helper Functions
-//--------------------------------
+//---------------------------------------------------------------------
 
+// Use this to generate a random ID for our message ID
 function generateUUID() {
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
