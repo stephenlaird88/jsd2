@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <form id="the-form" action="https://api.sketchfab.com/v2/models" enctype="multipart/form-data">
+    <p>
+      Upload your model file:
+    </p>
+    <input name="modelFile" type="file">
+    
+    <p>
+      API Token:
+    </p>
+    <input name="token" type="text">
+    
+    <p>
+      Model name:
+    </p>
+    <input name="name" type="text">
+    
+    <p>
+      Model description:
+    </p>
+    <input name="description" type="text">
+    
+    <p>
+      Tags (space separated):
+    </p>
+    <input name="tags" type="text">
+    
+    <p>
+      Private? (Pro only) <input name="private" type="checkbox" value="1">
+    </p>
+    
+    <p>
+      Password (Pro only, must be private):
+    </p>
+    <input name="password" type="password">
+    
+    <input name="Submit" type="submit">
+    <br>
+    <p>
+      Status:
+    </p>
+    <p id="status"></p>
+  
+  </form>
+
+  <script>
+    var sketchfabApiUrl = 'https://api.sketchfab.com/v2/models';
+    var sketchfabModelUrl = 'https://sketchfab.com/models/';
+    // var data = document.getElementById( 'the-form' );
+    var data = $( '#the-form' )[ 0 ];
+    
+    function uploadModel( modelData ) {
+      console.log( 'Begin upload of ' + String( data.modelFile.value ) );
+      var formData = new FormData( data );
+      
+      $.each( data, function( property, value ) {
+        formData.append( property, value.value );
+      } );
+      
+      $.ajax( {
+        url: sketchfabApiUrl,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        success: function( response ) {
+          var uid = response.uid;
+          console.log( 'Begin polling processing status. If successful, the model will be available at ' + sketchfabModelUrl + uid );
+          $( '#status' ).html( 'Upload successful. Begin polling...' );
+          pollProcessingStatus( uid );
+        },
+        error: function( response ) {
+          console.log( 'Upload Error!' );
+          console.log( JSON.stringify( response ) );
+          $( '#status' ).html( 'Upload error!' );
+        }
+      } );
+    }
+    function pollProcessingStatus( urlid ) {
+      var url = sketchfabApiUrl + '/' + urlid + '/status?token=' + data.token.value;
+      
+      var errors = 0;
+      var maxErrors = 10;
+      var retry = 0;
+      var maxRetries = 50;
+      var retryTimeout = 5000;  // milliseconds
+      var retryTimeoutSec = retryTimeout / 1000; // seconds
+      var complete = false;
+      function getStatus() {
+        $.ajax( {
+          url: url,
+          type: 'GET',
+          dataType: 'json',
+          success: function( response ) {
+            retry++;
+            console.log( 'Got status...' )
+            var status = response.processing;
+            
+            switch( status ) {
+              case 'PENDING':
+                console.log( 'Model is in the processing queue. Waiting ' + ( retryTimeoutSec ) + ' seconds to try again...' );
+                $( '#status' ).html( 'Model in queue...' );
+                break;
+              case 'PROCESSING':
+                console.log( 'Model is being processed. Waiting ' + ( retryTimeoutSec ) + ' seconds to try again...' );
+                $( '#status' ).html( 'Model processing...' );
+                break;
+              case 'FAILED':
+                console.log( 'Model processing failed:' );
+                console.log( response.error );
+                $( '#status' ).html( 'Model processing failed!' );
+                complete = true;
+                break;
+              case 'SUCCEEDED':
+                console.log( 'It worked!' );
+                console.log( sketchfabModelUrl + urlid );
+                complete = true;
+                $( '#status' ).html( 'It worked! See it here: <a href="' + sketchfabModelUrl + urlid + '">' + sketchfabModelUrl + urlid + '</a>' );
+                break;
+              default:
+                console.log( 'This message should never appear...something changed in the processing response. See: ' + url );
+            }
+            
+            if ( retry < maxRetries && !complete ) {
+              setTimeout( getStatus, retryTimeout );
+            } else if ( complete ) {
+              return;
+            } else if ( retry >= maxRetries ) {
+              console.log( 'Polled ' + maxRetries + ' times and it\'s still not finished...quitting' );
+            } else {
+              console.log( 'Something weird happened...quitting' );
+            }
+          },
+          error: function( response ) {
+            errors++;
+            retry++;
+            if ( errors < maxErrors && retry < maxRetries && !complete ) {
+              console.log( 'Error: ' + JSON.stringify( response ) );
+              console.log( 'Error getting status ( ' + errors + ' ). Trying again...' );
+              setTimeout( getStatus, retryTimeout );
+            } else {
+              console.log( 'Too many errors...quitting' );
+            }
+          }
+        } );
+      }
+      getStatus();
+    }
+    data.onsubmit = function() {
+      uploadModel( data );
+      return false; // Prevent redirect
+    }
+    
+  </script>
+<body>
+</html>
