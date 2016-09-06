@@ -1,0 +1,131 @@
+
+
+
+.display-3 {
+	padding-bottom: 15px;
+}
+.main-panel{
+	right: 0;
+}
+
+
+
+.span img {
+	width: 80%;
+	
+}
+
+.row {
+	width: 17%;
+	float: right;	
+}
+
+.col-xs-6 {
+	width: 130%;
+	margin-left: 5px;
+}
+
+
+.button-stuff {
+	padding-top: 10px;
+	padding-bottom: 5px;
+
+
+}
+
+.display-4 {
+	padding-top: 30px;
+}
+
+.description {
+	padding-bottom: 10%;
+	width: 85%;
+	float: left;
+}
+
+
+
+.description h2 {
+	padding-bottom: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+.description p {
+	padding-top: 10px;
+}
+
+
+.modal-content {
+	background-color: white;
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,.2)
+	outline: 0;
+}
+
+
+
+
+/* General Styles
+---------------------------------------------- */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#popUp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background:  rgba(0,0,0,0.95);
+}
+
+#popUp .closePopUp {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 40px;
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.img-thumbnail {
+	margin: 10px;
+}
+
+#popUp.loader {
+  background-image: url(../images/ajax_loader.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#popUp.loader .container {
+  display: none;
+}
+
+#popUp .container {
+  margin-top: 80px;
+}
+
+#popUp h1 {
+  margin-bottom: 0;
+}
+
+#popUp .popUpAction {
+  padding: 10px;
+  background-color: #337ab7;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transform: 0.2s all;
+  margin-top: 30px;
+  display: inline-block;
+}
+
+#popUp .popUpAction:hover {
+  color: #337ab7;
+  background: #fff;
+}

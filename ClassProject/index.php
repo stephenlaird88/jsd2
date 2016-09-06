@@ -1,1 +1,0 @@
-<?php header( 'Location: /jsd2/profile-page/examples/profile-page.html' ); ?>
