@@ -32,6 +32,11 @@ main .locations {
 	margin: auto;
 }
 
+main .map {
+	width: 300px;
+	height: 300px;
+}
+
 
 /* Button styles
 ---------------------------------------------- */

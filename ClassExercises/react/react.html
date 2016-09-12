@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react</title>
+	<meta charset= "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/template.css">
+</head>
+
+<body>
+	<h1>React</h1>
+
+<div class="container"></div>
+
+
+<script type="text/jsx">
+
+
+	var json = {
+		name: "Stephen",
+		birthday: "Feb 18",
+		image: "https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-1/p320x320/1013871_10154846715755538_9032775111090138743_n.jpg?oh=4ea54beac1158d7ef177bdfb914e0280&oe=58427BCF"
+	}
+
+	// parent DOM element for react component 
+	var container = document.querySelector(".container");
+
+
+	// render react component in the DOM
+	var App = React.createClass({
+	// render contains XML template
+		render: function() {
+			console.log('render');
+			return (
+				<div>
+					<p>Hello world!</p>
+					<p>My name is {this.props.name} and my birthday is {this.props.birthday}.</p>
+					<Profile img={this.props.img}/>
+				</div>
+			);
+		}
+	});
+
+	var Profile = React.createClass({
+		render: function() {
+			return: function() {
+				return (
+					<div>
+						<h2>Profile</h2>
+						<img src={this.props.image}/>
+					</div>
+				);
+			}
+		}
+	})
+
+	ReactDOM.render(<App name={json.name} birthday={json.birthday} img={json.img} />, container);
+</script>
+
+<script src="https://fb.me/react-0.14.6.js"></script>
+<script src="https://fb.me/react-dom-0.14.6.js"></script>
+<script src="http://fb.me/JSXTransformer-0.12.1.js"></script>
+
+</body>
+</html>

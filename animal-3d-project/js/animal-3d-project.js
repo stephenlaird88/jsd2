@@ -37,15 +37,15 @@ function get3dImage(e) {
 	var url = "https://sketchfab.com/oembed?url=https://sketchfab.com/models/";
 	switch(action) {
 		case 'source-1':
-			url = url + horse.id;
-			animalDisplayText.innerHTML = "HORSE";
+			url = url + tiger.sketchFabId;
+			animalDisplayText.innerHTML = "TIGER";
 			break;
 		case 'source-2':
-			url = url + dragon.id;
+			url = url + dragon.sketchFabId;
 			animalDisplayText.textContent = "DRAGON";
 			break;
 		case 'source-3':
-			url = url + whale.id;
+			url = url + whale.sketchFabId;
 			animalDisplayText.textContent = "GIANT WHALE";
 			break;
 	}
@@ -70,18 +70,4 @@ function closePopUp() {
 }
 
 
-//----------------------- json data --------------------------//
-
-var horse = {
-	"id": '69bfcdf219ff4260881d5696042fa526'
-};
-
-var dragon = {
-	"id": 'ed7d618dedb64ae7a450058cb444c666'
-};
-
-
-var whale = {
-	"id": '522e811044bc4e09bf84431e6c1cc109'
-};
 
