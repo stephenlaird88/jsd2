@@ -1,15 +1,21 @@
 // Structure
 // ----------------------------------------------
 
-var animalIcon = document.querySelector(".col-xs-6");
+var fullBodyIcon = document.querySelector(".col-xs-6 #fullBody");
+var muscleIcon = document.querySelector(".col-xs-6 #muscle");
+var skeletonIcon = document.querySelector(".col-xs-6 #skeleton");
 var dropdown = document.querySelector(".container .dropdown");
 var animalDisplayText = document.querySelector(".container .display-3");
 //var iframeTemplate = document.querySelector('iframe-template');
 var results = document.querySelector("#sketchFabAPI");
 
 // div popup
+var popUpThumbnails = document.querySelector("#popUp .container");
 var popUp = document.getElementById('popUp');
 var close = document.querySelector('a.closePopUp');
+
+// handlebars
+var popUpTemplate = document.querySelector("#popUp-template");
 
 
 
@@ -21,7 +27,9 @@ newImage: "";
 // Events
 // ----------------------------------------------
 
-animalIcon.addEventListener('click', getPopup);
+fullBodyIcon.addEventListener('click', getPopUp);
+muscleIcon.addEventListener('click', getPopUp);
+skeletonIcon.addEventListener('click', getPopUp);
 close.addEventListener('click', closePopUp);
 dropdown.addEventListener('click', get3dImage);
 
@@ -37,7 +45,7 @@ function get3dImage(e) {
 	var url = "https://sketchfab.com/oembed?url=https://sketchfab.com/models/";
 	switch(action) {
 		case 'source-1':
-			url = url + tiger.sketchFabId;
+			url = url + tiger.fullBody[0].sketchFabId;
 			animalDisplayText.innerHTML = "TIGER";
 			break;
 		case 'source-2':
@@ -52,6 +60,34 @@ function get3dImage(e) {
 	$.getJSON(url, update3dImage);
 }
 
+function getPopUp(e) {
+	e.preventDefault();
+	popUp.classList = "";
+	var action = e.target.closest('section').id;
+	switch(action) {
+		case 'muscle':
+			// handlebars to dynamically create new html
+			var template = Handlebars.compile(popUpTemplate.innerHTML);
+			popUpThumbnails.innerHTML = template(tiger.muscles);
+			break;
+		case 'fullBody':
+			// handlebars to dynamically create new html
+			var template = Handlebars.compile(popUpTemplate.innerHTML);
+			popUpThumbnails.innerHTML = template(tiger.fullBody);
+			break;
+		case 'skeleton':
+			// handlebars to dynamically create new html
+			var template = Handlebars.compile(popUpTemplate.innerHTML);
+			popUpThumbnails.innerHTML = template(tiger.skeleton);
+			break;		
+	}
+}
+
+function closePopUp() {
+    popUp.classList.add('hidden');
+}
+
+
 
 // Update page
 // ----------------------------------------------
@@ -60,14 +96,7 @@ function update3dImage(json) {
 	results.innerHTML = json.html;
 } 
 
-function getPopup() {
-	console.log("clicked");
-	popUp.classList = "";
-}
 
-function closePopUp() {
-    popUp.classList.add('hidden');
-}
 
 
 
