@@ -127,7 +127,7 @@
   <!-- Handlebars -->
 <script id="popUp-template" type="text/x-handlebars-template">
   {{#each this}}
-  	<section class ="Thumbnail" data-index={{@index}}>
+  	<section class ="Thumbnail" data-index={{@index}} data-sketchFabId={{sketchFabId}}>
 		<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src={{urlToImage}} data-holder-rendered="true" style="width: 200px; height: 200px;">
 	</section>
   {{/each}}

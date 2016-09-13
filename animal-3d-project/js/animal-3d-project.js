@@ -32,6 +32,7 @@ muscleIcon.addEventListener('click', getPopUp);
 skeletonIcon.addEventListener('click', getPopUp);
 close.addEventListener('click', closePopUp);
 dropdown.addEventListener('click', get3dImage);
+popUpThumbnails.addEventListener('click', getDetailed3dImage);
 
 
 // Event handlers
@@ -57,6 +58,15 @@ function get3dImage(e) {
 			animalDisplayText.textContent = "GIANT WHALE";
 			break;
 	}
+	$.getJSON(url, update3dImage);
+}
+
+function getDetailed3dImage(e) {
+	e.preventDefault();
+	closePopUp();
+	var url = "https://sketchfab.com/oembed?url=https://sketchfab.com/models/";
+	var sketchFabId = e.target.parentElement.dataset.sketchfabid;
+	url = url + sketchFabId;
 	$.getJSON(url, update3dImage);
 }
 
