@@ -54,8 +54,8 @@ function get3dImage(e) {
 			animalDisplayText.innerHTML = "TIGER";
 			break;
 		case 'source-2':
-			url = url + dragon.sketchFabId;
-			animalDisplayText.textContent = "DRAGON";
+			url = url + horse.muscles[0].sketchFabId;
+			animalDisplayText.textContent = "HORSE";
 			break;
 		case 'source-3':
 			url = url + whale.sketchFabId;
