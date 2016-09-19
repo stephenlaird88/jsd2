@@ -23,7 +23,7 @@ var popUpTemplate = document.querySelector("#popUp-template");
 
 // Setup
 //-------------------------------------------------------
-newImage: "";
+
 
 
 // Events
