@@ -23,8 +23,8 @@ var popUpTemplate = document.querySelector("#popUp-template");
 
 // Setup
 //-------------------------------------------------------
-
 newImage: "";
+
 
 // Events
 // ----------------------------------------------
@@ -41,7 +41,7 @@ home.addEventListener('click', bringMeHome);
 // Event handlers
 // ----------------------------------------------
 
-
+// this function is fired when the user clicks an animal from the drop-down
 function get3dImage(e) {
 	e.preventDefault();
 	popUp.classList = "loader";
@@ -52,28 +52,30 @@ function get3dImage(e) {
 		case 'source-1':
 			url = url + tiger.fullBody[0].sketchFabId;
 			animalDisplayText.innerHTML = "TIGER";
+			popUpThumbnails.dataset.animalType = "tiger";
 			break;
 		case 'source-2':
 			url = url + horse.muscles[0].sketchFabId;
 			animalDisplayText.textContent = "HORSE";
-			break;
-		case 'source-3':
-			url = url + whale.sketchFabId;
-			animalDisplayText.textContent = "GIANT WHALE";
+			popUpThumbnails.dataset.animalType = "horse";
 			break;
 	}	
 	$.getJSON(url, update3dImage);
 }
 
+// this function is fired when the user clicks a detailed muscle, skeleton, or full-body thumbnail from the pop-up overlay
 function getDetailed3dImage(e) {
 	e.preventDefault();
 	popUp.classList = "loader";
+	// using animalType to create the dependency between animal and category
+	var animalType = popUpThumbnails.dataset.animalType;
+	// using data attributes of animalType and category to determine the right description to dynamically change
 	if (e.target.parentElement.dataset.category === "muscle") {
-		description.innerHTML = tiger.muscles[e.target.parentElement.dataset.index].description;
+		description.innerHTML = animals[animalType].muscles[e.target.parentElement.dataset.index].description;
 	} else if (e.target.parentElement.dataset.category === "skeleton") {
-		description.innerHTML = tiger.skeleton[e.target.parentElement.dataset.index].description;
+		description.innerHTML = animals[animalType].skeleton[e.target.parentElement.dataset.index].description;
 	} else if (e.target.parentElement.dataset.category === "fullBody") {
-		description.innerHTML = tiger.fullBody[e.target.parentElement.dataset.index].description;
+		description.innerHTML = animals[animalType].fullBody[e.target.parentElement.dataset.index].description;
 	} else {
 		return;
 	}
@@ -83,6 +85,8 @@ function getDetailed3dImage(e) {
 	$.getJSON(url, update3dImage);
 }
 
+// this function is fired when the user clicks one of the full-body, muscle, or skeleton categories
+// this generates the pop-up overlay along with the appropriate thumbnails to show based on the animal selection
 function getPopUp(e) {
 	e.preventDefault();
 	popUp.classList = "";
@@ -91,17 +95,17 @@ function getPopUp(e) {
 		case 'muscle':
 			// handlebars to dynamically create new html
 			var template = Handlebars.compile(popUpTemplate.innerHTML);
-			popUpThumbnails.innerHTML = template(tiger.muscles);
+			popUpThumbnails.innerHTML = template(animals[popUpThumbnails.dataset.animalType].muscles);
 			break;
 		case 'fullBody':
 			// handlebars to dynamically create new html
 			var template = Handlebars.compile(popUpTemplate.innerHTML);
-			popUpThumbnails.innerHTML = template(tiger.fullBody);
+			popUpThumbnails.innerHTML = template(animals[popUpThumbnails.dataset.animalType].fullBody);
 			break;
 		case 'skeleton':
 			// handlebars to dynamically create new html
 			var template = Handlebars.compile(popUpTemplate.innerHTML);
-			popUpThumbnails.innerHTML = template(tiger.skeleton);
+			popUpThumbnails.innerHTML = template(animals[popUpThumbnails.dataset.animalType].skeleton);
 			break;		
 	}
 }

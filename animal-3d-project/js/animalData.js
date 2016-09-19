@@ -79,13 +79,34 @@ var horse = {
 		}
 	]
 };
-var dragon = {
-	sketchFabId: "ed7d618dedb64ae7a450058cb444c666"
+
+
+var animals = {
+	tiger: tiger,
+	horse: horse
 };
 
-
-var whale = {
-	sketchFabId: "522e811044bc4e09bf84431e6c1cc109"
+/*
+var car1 = {
+	make: 'Ford',
+	model: 'Taurus',
+	year: 2011,
+	color: 'blue'
 };
 
+var car2 = {
+	make: 'Subaru',
+	model: 'WRX',
+	year: 2007,
+	color: 'red'
+};
+
+var cars = {
+	derek_car: car1,
+	steven_car: car2
+};
+
+car['steven_car'].model
+animals['horse'].fullBody.name
+*/
 //  horse: 69bfcdf219ff4260881d5696042fa526
