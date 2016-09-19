@@ -55,7 +55,7 @@ function get3dImage(e) {
 			popUpThumbnails.dataset.animalType = "tiger";
 			break;
 		case 'source-2':
-			url = url + horse.muscles[0].sketchFabId;
+			url = url + horse.fullBody[0].sketchFabId;
 			animalDisplayText.textContent = "HORSE";
 			popUpThumbnails.dataset.animalType = "horse";
 			break;
