@@ -1,6 +1,7 @@
 // Structure
 // ----------------------------------------------
 
+var moviesIcon = document.querySelector(".col-xs-6 #movies");
 var fullBodyIcon = document.querySelector(".col-xs-6 #fullBody");
 var muscleIcon = document.querySelector(".col-xs-6 #muscle");
 var skeletonIcon = document.querySelector(".col-xs-6 #skeleton");
@@ -18,6 +19,7 @@ var close = document.querySelector('a.closePopUp');
 
 // handlebars
 var popUpTemplate = document.querySelector("#popUp-template");
+var popUpMovieTemplate = document.querySelector("#popUpMovies-template");
 
 
 
@@ -29,6 +31,7 @@ var popUpTemplate = document.querySelector("#popUp-template");
 // Events
 // ----------------------------------------------
 
+moviesIcon.addEventListener('click', getPopUp);
 fullBodyIcon.addEventListener('click', getPopUp);
 muscleIcon.addEventListener('click', getPopUp);
 skeletonIcon.addEventListener('click', getPopUp);
@@ -85,13 +88,19 @@ function getDetailed3dImage(e) {
 	$.getJSON(url, update3dImage);
 }
 
-// this function is fired when the user clicks one of the full-body, muscle, or skeleton categories
+// this function is fired when the user clicks one of the movies, full-body, muscle, or skeleton categories
 // this generates the pop-up overlay along with the appropriate thumbnails to show based on the animal selection
 function getPopUp(e) {
 	e.preventDefault();
 	popUp.classList = "";
 	var action = e.target.closest('section').id;
 	switch(action) {
+		case 'movies':
+			// handlebars to dynamically create new html
+			// this pulls from a different handlebars template compared to the other categories
+			var template = Handlebars.compile(popUpMovieTemplate.innerHTML);
+			popUpThumbnails.innerHTML = template(animals[popUpThumbnails.dataset.animalType].movies);
+			break;		
 		case 'muscle':
 			// handlebars to dynamically create new html
 			var template = Handlebars.compile(popUpTemplate.innerHTML);

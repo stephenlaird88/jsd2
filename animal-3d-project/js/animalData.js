@@ -44,6 +44,14 @@ var tiger = {
 
 
 var horse = {
+	movies: [
+		{
+			type: "movies",
+			name: "Head Video",
+			urlToMovie: "https://www.youtube.com/embed/e4_4ZA7oBTw",
+			description: "Horse Video Demonstration"
+		}
+	],
 	muscles: [
 		{
 			type: "muscle",
