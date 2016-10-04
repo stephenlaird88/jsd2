@@ -62,7 +62,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 
 a, a:hover, a:focus {
-  color: #9c27b0;
+  color: #337ab7;
 }
 a .material-icons, a:hover .material-icons, a:focus .material-icons {
   vertical-align: middle;
@@ -239,7 +239,7 @@ a .material-icons, a:hover .material-icons, a:focus .material-icons {
 }
 .btn.btn-primary,
 .navbar .navbar-nav > li > a.btn.btn-primary {
-  box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(90, 118, 131, 0.14), 0 3px 1px -2px rgba(90, 118, 131, 0.2), 0 1px 5px 0 rgba(90, 118, 131, 0.12);
 }
 .btn.btn-primary, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary.active, .btn.btn-primary:active:focus, .btn.btn-primary:active:hover, .btn.btn-primary.active:focus, .btn.btn-primary.active:hover, .open > .btn.btn-primary.dropdown-toggle, .open > .btn.btn-primary.dropdown-toggle:focus, .open > .btn.btn-primary.dropdown-toggle:hover,
 .navbar .navbar-nav > li > a.btn.btn-primary,
@@ -254,14 +254,14 @@ a .material-icons, a:hover .material-icons, a:focus .material-icons {
 .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle, .open >
 .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:focus, .open >
 .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:hover {
-  background-color: #9c27b0;
+  background-color: #7093A4;
   color: #FFFFFF;
 }
 .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary:hover,
 .navbar .navbar-nav > li > a.btn.btn-primary:focus,
 .navbar .navbar-nav > li > a.btn.btn-primary:active,
 .navbar .navbar-nav > li > a.btn.btn-primary:hover {
-  box-shadow: 0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2);
+  box-shadow: 0 14px 26px -12px rgba(90, 118, 131, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(90, 118, 131, 0.2);
 }
 .btn.btn-primary.disabled, .btn.btn-primary.disabled:hover, .btn.btn-primary.disabled:focus, .btn.btn-primary.disabled.focus, .btn.btn-primary.disabled:active, .btn.btn-primary.disabled.active, .btn.btn-primary:disabled, .btn.btn-primary:disabled:hover, .btn.btn-primary:disabled:focus, .btn.btn-primary:disabled.focus, .btn.btn-primary:disabled:active, .btn.btn-primary:disabled.active, .btn.btn-primary[disabled], .btn.btn-primary[disabled]:hover, .btn.btn-primary[disabled]:focus, .btn.btn-primary[disabled].focus, .btn.btn-primary[disabled]:active, .btn.btn-primary[disabled].active, fieldset[disabled] .btn.btn-primary, fieldset[disabled] .btn.btn-primary:hover, fieldset[disabled] .btn.btn-primary:focus, fieldset[disabled] .btn.btn-primary.focus, fieldset[disabled] .btn.btn-primary:active, fieldset[disabled] .btn.btn-primary.active,
 .navbar .navbar-nav > li > a.btn.btn-primary.disabled,
@@ -1905,9 +1905,9 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
   padding: 15px 0;
 }
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-  background-color: #9c27b0;
+  background-color: #26576E;
   color: #FFFFFF;
-  box-shadow: 0 16px 26px -10px rgba(156, 39, 176, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2);
+  box-shadow: 0 16px 26px -10px rgba(64, 152, 228, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(51, 122, 183, 0.2);
 }
 .nav-pills.nav-pills-info > li.active > a, .nav-pills.nav-pills-info > li.active > a:focus, .nav-pills.nav-pills-info > li.active > a:hover {
   background-color: #03a9f4;
@@ -2125,7 +2125,7 @@ legend {
   line-height: 1.42857;
 }
 .navbar, .navbar.navbar-default {
-  background-color: #9c27b0;
+  background-color: #26576E;
   color: #ffffff;
 }
 .navbar .navbar-form .form-group input.form-control::-moz-placeholder,
@@ -2188,7 +2188,7 @@ legend {
   color: contrast-color(#3f51b5, #000000, #ffffff);
 }
 .navbar.navbar-primary {
-  background-color: #9c27b0;
+  background-color: #3f51b5;
   color: #ffffff;
 }
 .navbar.navbar-primary .navbar-form .form-group input.form-control::-moz-placeholder,
@@ -2613,7 +2613,7 @@ h4, .h4 {
 h5, .h5 {
   font-size: 1.25em;
   line-height: 1.4em;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 h6, .h6 {
@@ -2663,7 +2663,7 @@ h2.title {
 }
 
 .text-primary {
-  color: #9c27b0;
+  color: #26576E;
 }
 
 .text-danger {
@@ -2679,7 +2679,7 @@ h2.title {
 }
 
 .nav-tabs {
-  background: #9c27b0;
+  background: #26576E;
   border: 0;
   border-radius: 3px;
   padding: 0 15px;
@@ -3037,7 +3037,7 @@ h2.title {
   background-color: #3f51b5;
 }
 .panel.panel-primary > .panel-heading {
-  background-color: #9c27b0;
+  background-color: #26576E;
 }
 .panel.panel-success > .panel-heading {
   background-color: #4caf50;
@@ -3760,6 +3760,10 @@ h2.title {
 
 figure .img-responsive {
   height:120px;
+}
+
+.col-md-6 p {
+  text-align: left;
 }
 
 /*# sourceMappingURL=material-kit.css.map */
