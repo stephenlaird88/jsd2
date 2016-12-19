@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Animal 3D Project</title>
+    <link rel="stylesheet" href="css/animal-3d-project.css">
+</head>
+<body>
+<header class="navbar navbar-inverse">
+	<div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Animal 3D Project</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">ABOUT<span class="sr-only">(current)</span></a></li>
+				<li><a href="#">CONTACT</a></li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ANIMALS<span class="caret"></span></a>
+				  	<ul class="dropdown-menu">
+					    <li id="source-1"><a href="#">Tiger</a></li>
+					    <li role="separator" class="divider"></li>
+					    <li id="source-2"><a href="#">Horse</a></li>
+				  	</ul>
+				</li>
+			</ul>
+		<form class="navbar-form navbar-left">
+			<div class="form-group">
+			  <input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		</div><!-- /.navbar-collapse -->
+	</div>
+</header>
+
+<!----------------popup stuff -------------------->
+
+
+<div id="popUp" class="loader hidden">
+    <a href="#" class="closePopUp">X</a>
+    <div class="container">
+    	<!--
+		<a href="http://www.w3.org">
+			<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="https://s.graphiq.com/sites/default/files/465/media/images/t2/Pembroke_Welsh_Corgi_5395269.jpg" data-holder-rendered="true" style="width: 200px; height: 200px;">
+		</a> --> 
+		<section class ="Thumbnail">  
+			<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="https://s.graphiq.com/sites/default/files/465/media/images/t2/Pembroke_Welsh_Corgi_5395269.jpg" data-holder-rendered="true" style="width: 200px; height: 200px;">
+		</section>
+    </div>
+</div>
+
+
+<div class="container">
+	<h1 class="display-3">
+		Horse
+		<small class="text-muted">| Full Body</small>
+	</h1>
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="span">
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<section id="movies">
+					<a href="#" class="thumbnail">
+						<img src="https://stephenlaird88.github.io/jsd2/animal-3d-project/images/movie-clip-512.png" alt="movie-clip">
+					</a>
+				</section>
+				<section id="fullBody">
+					<a href="#" class="thumbnail">
+						<img src="https://stephenlaird88.github.io/jsd2/animal-3d-project/images/full-body.png" alt="full-body">
+					</a>
+				</section>
+				<section id="muscle">
+					<a href="#" class="thumbnail">
+						<img src="https://stephenlaird88.github.io/jsd2/animal-3d-project/images/muscle.png" alt="muscle">
+					</a>
+				</section>
+				<section id="skeleton">
+					<a href="#" class="thumbnail">
+						<img src="https://stephenlaird88.github.io/jsd2/animal-3d-project/images/elephant-skeleton.png">
+					</a>
+				</section>
+			</div>
+  		</div>
+    <!-- Insert Sketchfab iFrame here-->
+		<div id="sketchFabAPI"> 
+			<iframe width="640" height="480" src="https://sketchfab.com/models/d1ade763d0fd45d0aeea39a6608b5e2c/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
+
+			<p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+			    <a href="https://sketchfab.com/models/d1ade763d0fd45d0aeea39a6608b5e2c?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Gallop</a>
+			    by <a href="https://sketchfab.com/stephenlaird88?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">stephenlaird88</a>
+			    on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+			</p>
+		</div> 
+    </div>
+
+    <!--
+	<div class="button-stuff">
+		<button type="button" class="btn btn-primary btn-lg">EMBED</button>
+		<button type="button" class="btn btn-primary btn-lg">LIKE</button>
+	</div> -->
+
+	<div class="description">
+		<h2 class="display-4">
+			Description
+		</h2>
+			<p>I am a giant bug rawwrrr</p>
+	</div>
+</div>
+  <!-- Handlebars -->
+<script id="popUp-template" type="text/x-handlebars-template">
+  {{#each this}}
+  	<section class ="Thumbnail" data-index={{@index}} data-sketchFabId={{sketchFabId}} data-category={{type}}>
+		<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src={{urlToImage}} data-holder-rendered="true" style="width: 200px; height: 200px;">
+	</section>
+  {{/each}}
+</script>
+
+<script id="popUpMovies-template" type="text/x-handlebars-template">
+  {{#each this}}
+  	<section class ="Thumbnail" data-index={{@index}} data-category={{type}}>
+		<iframe width="560" height="315" src={{urlToMovie}} frameborder="0" allowfullscreen></iframe>
+	</section>
+  {{/each}}
+</script>
+
+<script type="text/javascript" src="https://d2f25wgezub9nf.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
+<script src="js/SketchfabAPIUtility.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+<script src="js/animalData.js"></script>
+<script src="js/animal-3d-project.js"></script>
+
+</body>
+</html>

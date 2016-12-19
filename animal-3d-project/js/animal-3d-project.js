@@ -5,12 +5,13 @@ var moviesIcon = document.querySelector(".col-xs-6 #movies");
 var fullBodyIcon = document.querySelector(".col-xs-6 #fullBody");
 var muscleIcon = document.querySelector(".col-xs-6 #muscle");
 var skeletonIcon = document.querySelector(".col-xs-6 #skeleton");
-var dropdown = document.querySelector(".container .dropdown-menu");
+var dropdown = document.querySelector(".container .dropdown-animals");
 var animalDisplayText = document.querySelector(".container .display-3");
 //var iframeTemplate = document.querySelector('iframe-template');
 var results = document.querySelector("#sketchFabAPI");
 var description = document.querySelector(".description p");
 var home = document.querySelector(".navbar-brand");
+var modelsDropDown = document.querySelector(".dropdown-menu");
 
 // div popup
 var popUpThumbnails = document.querySelector("#popUp .container");
@@ -23,8 +24,13 @@ var popUpMovieTemplate = document.querySelector("#popUpMovies-template");
 
 
 
+
 // Setup
 //-------------------------------------------------------
+// Viewer constructor
+var apiId = '5e28e504802243d48ee1ef81cdd9a556';
+
+var sketchfabAPIUtility = new SketchfabAPIUtility( apiId, document.getElementById('api-frame'), onSketchfabUtilityReady );
 
 
 
@@ -47,23 +53,26 @@ home.addEventListener('click', bringMeHome);
 // this function is fired when the user clicks an animal from the drop-down
 function get3dImage(e) {
 	e.preventDefault();
-	popUp.classList = "loader";
+//	popUp.classList = "loader";
 	// utilize event delegation to find the specific li.id in order to request the api call based on the user's selection
 	var action = e.target.closest('li').id;
-	var url = "https://sketchfab.com/oembed?url=https://sketchfab.com/models/";
+//	var url = "https://sketchfab.com/oembed?url=https://sketchfab.com/models/";
 	switch(action) {
 		case 'source-1':
-			url = url + tiger.fullBody[0].sketchFabId;
+//			url = url + tiger.fullBody[0].sketchFabId;
+			apiId = tiger.fullBody[0].sketchFabId;
 			animalDisplayText.innerHTML = "TIGER";
 			popUpThumbnails.dataset.animalType = "tiger";
 			break;
 		case 'source-2':
-			url = url + horse.fullBody[0].sketchFabId;
+//			url = url + horse.fullBody[0].sketchFabId;
+			apiId = horse.fullBody[0].sketchFabId;
 			animalDisplayText.textContent = "HORSE";
 			popUpThumbnails.dataset.animalType = "horse";
 			break;
 	}	
-	$.getJSON(url, update3dImage);
+//	$.getJSON(url, update3dImage);
+	var sketchfabAPIUtility = new SketchfabAPIUtility( apiId, document.getElementById('api-frame'), onSketchfabUtilityReady );
 }
 
 // this function is fired when the user clicks a detailed muscle, skeleton, or full-body thumbnail from the pop-up overlay
@@ -142,6 +151,67 @@ function update3dImage(json) {
 } 
 
 
+// Viewer API functions
 
+function onSketchfabUtilityReady() {            
+
+    //dynamically populate the selection menu for this example
+    var li_string = "";
+    for (var key in sketchfabAPIUtility.nodeHash) {
+        if (Array.isArray(sketchfabAPIUtility.nodeHash[key])) {
+           
+            for (var i = 0; i < sketchfabAPIUtility.nodeHash[key].length; i++) {
+                li_string += '<li><a data-buttonid="' + key + '" data-index="'+i+'" class="showObjectsEventTarget">' + key + '</a></li>';
+               
+            }
+        } else {
+            li_string += '<li><a data-buttonid="' + key + '" class="showObjectsEventTarget">' + key + '</a></li>';
+        }
+    }
+    $(".dropdown-menu")[0].innerHTML = "";
+    $(".dropdown-menu")[0].innerHTML = li_string;
+ // 	modelsDropDown.innerHTML = li_string;
+
+    //add mouse events to dropdowns
+    $("#showObjectsEventParent").on("click", ".showObjectsEventTarget", function (event) {
+        ChangeObjectsVisibility(event.currentTarget)
+    });
+}
+
+// The mouse event is passing the target dom object instead of just the dataset values so we can manipulate the dom object as well
+function ChangeObjectsVisibility(targetDomElement) {
+
+    //get the dataset value
+    var nodeName = targetDomElement.dataset.buttonid;
+
+    var nodeIndex = targetDomElement.dataset.index;
+    
+    //change the sketchfab objects visibility
+    if (nodeIndex != undefined) {
+        sketchfabAPIUtility.toggleNodeVisibility(nodeName, nodeIndex);
+    } else {
+        sketchfabAPIUtility.toggleNodeVisibility(nodeName);
+    }
+
+    //retrieve the node that we are currently targeting
+    var nodeObject;
+    if (nodeIndex != undefined) {
+        nodeObject = sketchfabAPIUtility.getNodeObject(nodeName, nodeIndex);
+    } else {
+        nodeObject = sketchfabAPIUtility.getNodeObject(nodeName);
+    }
+
+
+    if (nodeObject != null) {
+        //change the dom objects text color for hidden/visible status
+        if (nodeObject.isVisible) {
+            targetDomElement.style.color = "#000000";
+        } else {
+            targetDomElement.style.color = "#FF0000";
+        }
+    }
+    
+
+}
 
 

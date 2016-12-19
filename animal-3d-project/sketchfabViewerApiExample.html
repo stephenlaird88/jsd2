@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+</style>
+<html>
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Object Visibility Example</title>
+    <!-- Insert this script -->
+
+    <script type="text/javascript" src="https://d2f25wgezub9nf.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="js/SketchfabAPIUtility.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.1/dat.gui.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <script src="https://labs.sketchfab.com/experiments/annotations-sync/js/vendors/gl-matrix.js"></script>
+    
+    
+</head>
+<!-- Some divs to wrap the model iframes and two buttons -->
+<body class="body">
+
+    <div class="container">
+        <!-- The sketchfab iframe -->
+        <div class="bgdesigndesktop">
+            <div class="embed-responsive embed-responsive-16by9">
+                <div class="loadingImage"></div>
+                <iframe id="api-frame" class="embed-responsive-item" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+        </div>
+        <!-- A bunch of buttons -->
+        <div style="margin-top: 20px" id="showObjectsEventParent">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Objects<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    
+                                
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+   
+
+
+   
+
+    <!-- Your new script -->
+
+    <script>
+
+
+        function onSketchfabUtilityReady() {            
+
+            //dynamically populate the selection menu for this example
+            var li_string = "";
+            for (var key in sketchfabAPIUtility.nodeHash) {
+                if (Array.isArray(sketchfabAPIUtility.nodeHash[key])) {
+                   
+                    for (var i = 0; i < sketchfabAPIUtility.nodeHash[key].length; i++) {
+                        li_string += '<li><a data-buttonid="' + key + '" data-index="'+i+'" class="showObjectsEventTarget">' + key + '</a></li>';
+                       
+                    }
+                } else {
+                    li_string += '<li><a data-buttonid="' + key + '" class="showObjectsEventTarget">' + key + '</a></li>';
+                }
+            }
+
+            $(".dropdown-menu")[0].innerHTML = li_string;
+
+            //add mouse events to dropdowns
+            $("#showObjectsEventParent").on("click", ".showObjectsEventTarget", function (event) {
+                ChangeObjectsVisibility(event.currentTarget)
+            });
+        }
+
+        // The mouse event is passing the target dom object instead of just the dataset values so we can manipulate the dom object as well
+        function ChangeObjectsVisibility(targetDomElement) {
+
+            //get the dataset value
+            var nodeName = targetDomElement.dataset.buttonid;
+
+            var nodeIndex = targetDomElement.dataset.index;
+            
+            //change the sketchfab objects visibility
+            if (nodeIndex != undefined) {
+                sketchfabAPIUtility.toggleNodeVisibility(nodeName, nodeIndex);
+            } else {
+                sketchfabAPIUtility.toggleNodeVisibility(nodeName);
+            }
+
+            //retrieve the node that we are currently targeting
+            var nodeObject;
+            if (nodeIndex != undefined) {
+                nodeObject = sketchfabAPIUtility.getNodeObject(nodeName, nodeIndex);
+            } else {
+                nodeObject = sketchfabAPIUtility.getNodeObject(nodeName);
+            }
+
+
+            if (nodeObject != null) {
+                //change the dom objects text color for hidden/visible status
+                if (nodeObject.isVisible) {
+                    targetDomElement.style.color = "#000000";
+                } else {
+                    targetDomElement.style.color = "#FF0000";
+                }
+            }
+            
+
+        }
+
+        var sketchfabAPIUtility = new SketchfabAPIUtility('5e28e504802243d48ee1ef81cdd9a556', document.getElementById('api-frame'), onSketchfabUtilityReady);
+       // car with objects: 234d4daeb1f04d9d93f61f063ada9330
+       // horse head: 76fc38c471654e15be1cc627eabd45c0
+       // horse gallop: d1ade763d0fd45d0aeea39a6608b5e2c
+       // dota character: e2ed90c9758745d096d98c03daabba50
+
+    </script>
+</body>
+</html>

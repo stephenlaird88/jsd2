@@ -34,7 +34,7 @@
 				<li><a href="#">CONTACT</a></li>
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ANIMALS<span class="caret"></span></a>
-				  	<ul class="dropdown-menu">
+				  	<ul class="dropdown-animals">
 					    <li id="source-1"><a href="#">Tiger</a></li>
 					    <li role="separator" class="divider"></li>
 					    <li id="source-2"><a href="#">Horse</a></li>
@@ -100,16 +100,20 @@
   		</div>
     <!-- Insert Sketchfab iFrame here-->
 		<div id="sketchFabAPI"> 
-			<iframe width="640" height="480" src="https://sketchfab.com/models/d1ade763d0fd45d0aeea39a6608b5e2c/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
-
-			<p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
-			    <a href="https://sketchfab.com/models/d1ade763d0fd45d0aeea39a6608b5e2c?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Gallop</a>
-			    by <a href="https://sketchfab.com/stephenlaird88?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">stephenlaird88</a>
-			    on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campain=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
-			</p>
+			<iframe id="api-frame" class="embed-responsive-item" width="640" height="480" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 		</div> 
     </div>
-
+    <div style="margin-top: 20px" id="showObjectsEventParent">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Objects<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                
+                            
+                
+            </ul>
+        </div>
+            
+    </div>
     <!--
 	<div class="button-stuff">
 		<button type="button" class="btn btn-primary btn-lg">EMBED</button>
@@ -140,13 +144,16 @@
   {{/each}}
 </script>
 
-
+<script type="text/javascript" src="https://d2f25wgezub9nf.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script src="js/SketchfabAPIUtility.js"></script>
+<script src="https://labs.sketchfab.com/experiments/annotations-sync/js/vendors/gl-matrix.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
 <script src="js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
 <script src="js/animalData.js"></script>
