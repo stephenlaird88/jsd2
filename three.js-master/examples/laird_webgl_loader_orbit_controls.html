@@ -128,7 +128,7 @@
 
 				}); 
 
-				// gui controls set-up
+				// custom function for our gui
 				function toggleObjects() {
 					if (scene.children[3].visible === true) {
 						scene.children[3].visible = false;
@@ -137,15 +137,17 @@
 					}
 				}
 
-
+				// initialize gui
 				var datGUI = new dat.GUI();
 
+				// this is our gui params
 				var guiControls = new function() {
 			 		  this.toggleObjects = function() {
 			 		  	toggleObjects();
 			 		  };  
 			 	};		 	
 				  
+				// add parameters to initalized gui  
 				datGUI.add(guiControls, 'toggleObjects'); 
 
 
